@@ -7,8 +7,11 @@ const cheerio      = require('cheerio');
 //const winLoss    = require('./winLoss')
 const winLossData  = require('./winsLossData.json');
 const fs           = require('fs');
-const https         = require("https");
-const { fetcher } = require('./fetcher.js');
+const https        = require("https");
+const { fetcher }  = require('./fetcher.js');
+
+const { getTeamRankings } = require('./scrapers/getTeamRankings.js');
+const { getTeamsHistoricalHomeAwayRecord } = require('./scrapers/getTeamsHistoricalHomeAwayRecord.js');
 
 /**
  * @description method used to take body html and create an array of dates for the weekend games
@@ -47,11 +50,19 @@ function createArrOfDate (body) {
 
 function createAndFormatGame(game, winsAndLosses, rankings, gameDate) {
     const Home = winsAndLosses.find( r => r.Team === game.Home );
-    const Away = winsAndLosses.find( r => r.Team === game.Away );
+    let Away = winsAndLosses.find( r => r.Team === game.Away );
 
+    console.log('game ', game);
+    console.log('winsAndLosses ', winsAndLosses);
+    console.log('Away ', Away);
     let homeRank, awayRank;
 
+    if ( !Away ) {
+        Away = {}
+    }
+
     rankings.forEach( r => {
+        console.log('r = ', r.SCHOOL)
         if ( r.SCHOOL == Home.Team ){
             homeRank = r;
         } else if ( r.SCHOOL == Away.Team ){
@@ -298,7 +309,7 @@ function getGamesSchedule(url) {
             if (response.statusCode >= 400) {
               return reject(new Error('The website requested returned an error!'));
             }
-            console.log('body ', body)
+            // console.log('body ', body)
             xray(body, ['.box@html'])(function (conversionError, tableHtmlList) {
                 if (conversionError) {
                     console.log("conversionError = ", conversionError);
@@ -319,10 +330,18 @@ function getGamesSchedule(url) {
  */
 function normalizeSchoolName( teamRankings ) {
     return teamRankings.map( r => {
-        const split = r.TEAM.split(" (");
-        r.SCHOOL = split[0];
-        //const homeTeamRank = homeRank ? "#" + homeRank.RANK + " " : "";
-        return r;
+        if ( r.TEAM ) {
+            const split = r.TEAM.split(" (");
+            r.SCHOOL = split[0];
+            //const homeTeamRank = homeRank ? "#" + homeRank.RANK + " " : "";
+            return r;
+        } else {
+            const split = r.SCHOOL.split(" (");
+            r.SCHOOL = split[0];
+            r.Team = split[0];
+            //const homeTeamRank = homeRank ? "#" + homeRank.RANK + " " : "";
+            return r;
+        }
     });
 }
 
@@ -376,18 +395,34 @@ function schedulerMapper(table, index, winsAndLosses, ranking, gameDate ) {
  *  @description fusing together 3 different data points.  1) Team Records (wins/losses) 2) Team Rank 3) Team Schedule and home/away team
  *  @returns {JSON} file
  */
-async function initialize() {
+async function createGameCalendar( division, week ) {
 
+    const ilDivisionUrls = {
+        1: 'di',
+        2: 'dii',
+        3: 'diii'
+    };
+
+    const ncaaDivisionUrls = {
+        1: 'd1',
+        2: 'd2',
+        3: 'd3'
+    };
     const
-        teamsRecordUrl    = 'https://www.insidelacrosse.com/league/di/teams/19',
-        teamRankingsUrl   = 'https://www.ncaa.com/rankings/lacrosse-men/d1/inside-lacrosse',
-        gameCalendarUrl   = 'https://www.insidelacrosse.com/league/di/calendar/19';
+        teamsRecordUrl    = 'https://www.insidelacrosse.com/league/'+ ilDivisionUrls[division] +'/teams',
+        teamRankingsUrl   = 'https://www.ncaa.com/rankings/lacrosse-men/'+ ncaaDivisionUrls[division] +'/usila-coaches',
+        gameCalendarUrl   = 'https://www.insidelacrosse.com/league/'+ ilDivisionUrls[division] +'/calendar/19';
 
+    console.log('teamsRecordUrl ', teamsRecordUrl)
+    console.log('teamRankingsUrl ', teamRankingsUrl)
+    console.log('gameCalendarUrl ', gameCalendarUrl)
     //retrieves data
     const
         winsAndLosses     = await tableScraper.get(teamsRecordUrl),
         rankingData       = await tableScraper.get(teamRankingsUrl),
         htmlGamesSchedule = await getGamesSchedule(gameCalendarUrl);
+
+    console.log('rankingData ', rankingData[0].length)
 
     //cleans & processes data
     const
@@ -397,9 +432,23 @@ async function initialize() {
 
     const data = [].concat.apply([], await scheduleOfGames);
 
-    writeToJson('lax-calendar-init.json', data);
+    writeToJson( 'data/schedules/'+ ncaaDivisionUrls[division].toUpperCase()+week+'lax-calendar.json', data);
 }
-//initialize();
+
+function initializeGameCalendars() {
+    for( let i = 1; i <=3; i++) {
+        createGameCalendar(i, '-week3-');
+    }
+}
+
+//initializeGameCalendars();
+
+//d2 only
+//createGameCalendar(2, '-week3-');
+
+//getTeamRankings();
+
+getTeamsHistoricalHomeAwayRecord('gettysburg', 2007,2019);
 
 async function getRecordAndRankFromRosterHtml( html ){
     const $ = cheerio.load(await html);
@@ -508,13 +557,29 @@ async function getTeamStats() {
         cssSelector: statsCssSelector,
     };
 
+    const army = {
+        name: 'army',
+        rootDomain: 'https://goarmywestpoint.com/',
+        statsUrl: 'https://goarmywestpoint.com/' + statsUrlPath ,
+        rosterUrl: rosterUrlPath.replace('TEAM_NAME', 'army'),
+        cssSelector: statsCssSelector,
+    };
+
+    const lehigh = {
+        name: 'lehigh',
+        rootDomain: 'https://lehighsports.com/',
+        statsUrl: 'https://lehighsports.com/' + statsUrlPath ,
+        rosterUrl: rosterUrlPath.replace('TEAM_NAME', 'lehigh'),
+        cssSelector: statsCssSelector,
+    };
+
 
     //const teams = [psu];
-    const teams = [psu, yale, uva, uPenn, loyola, hopkins, cornell, denver, duke, syracuse, maryland];
+    const teams = [psu, yale, uva, uPenn, loyola, hopkins, cornell, denver, duke, syracuse, maryland, army, lehigh];
     //const teams = [uPenn];
-    //const year = 2019;
-    const year = 2020;
-    const classYr = 'fr';
+    const year = 2019;
+    //const year = 2020;
+    const classYr = 'sr';
 
     let classData = {
         year: year,
@@ -567,5 +632,5 @@ async function getTeamStats() {
 
 }
 
-getTeamStats();
+//getTeamStats();
 

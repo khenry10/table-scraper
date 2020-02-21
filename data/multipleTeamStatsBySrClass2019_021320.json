@@ -1,0 +1,114 @@
+{
+  "year": 2019,
+  "classStats": "Seniors",
+  "psu": {
+    "offense": "12.55%",
+    "defense-start": 38,
+    "defense-played": 105,
+    "ground-balls": "15.67%",
+    "face-offs-won": 0,
+    "face-off-percentage": 0,
+    "goalie-saves": "9.57%",
+    "goalie-save-percentage": 0.541
+  },
+  "yale": {
+    "offense": "31.01%",
+    "defense-start": 90,
+    "defense-played": 154,
+    "ground-balls": "16.42%",
+    "face-offs-won": 0,
+    "face-off-percentage": 0,
+    "goalie-saves": "7.85%",
+    "goalie-save-percentage": 0.577
+  },
+  "uva": {
+    "offense": "21.37%",
+    "defense-start": 55,
+    "defense-played": 171,
+    "ground-balls": "26.59%",
+    "face-offs-won": 0,
+    "face-off-percentage": 0,
+    "goalie-saves": "3.48%",
+    "goalie-save-percentage": 0.615
+  },
+  "uPenn": {
+    "offense": "34.58%",
+    "defense-start": 52,
+    "defense-played": 115,
+    "ground-balls": "25%",
+    "face-offs-won": 23,
+    "face-off-percentage": "0.55%",
+    "goalie-saves": "98.08%",
+    "goalie-save-percentage": 0.265
+  },
+  "loyola": {
+    "offense": "44.68%",
+    "defense-start": 71,
+    "defense-played": 126,
+    "ground-balls": "15.86%",
+    "face-offs-won": 0,
+    "face-off-percentage": 0,
+    "goalie-saves": "97.66%",
+    "goalie-save-percentage": 0.583
+  },
+  "hopkins": {
+    "offense": "25.4%",
+    "defense-start": 48,
+    "defense-played": 89,
+    "ground-balls": "23.26%",
+    "face-offs-won": 0,
+    "face-off-percentage": 0,
+    "goalie-saves": "0%",
+    "goalie-save-percentage": 0
+  },
+  "cornell": {
+    "offense": "34.48%",
+    "defense-start": 45,
+    "defense-played": 111,
+    "ground-balls": "26.08%",
+    "face-offs-won": 0,
+    "face-off-percentage": 0,
+    "goalie-saves": "0%",
+    "goalie-save-percentage": 0
+  },
+  "denver": {
+    "offense": "30.99%",
+    "defense-start": 72,
+    "defense-played": 126,
+    "ground-balls": "35.01%",
+    "face-offs-won": 0,
+    "face-off-percentage": 0,
+    "goalie-saves": "70.97%",
+    "goalie-save-percentage": 0.234
+  },
+  "duke": {
+    "offense": "39.18%",
+    "defense-start": 74,
+    "defense-played": 165,
+    "ground-balls": "35.19%",
+    "face-offs-won": 1,
+    "face-off-percentage": "0.11%",
+    "goalie-saves": "99.43%",
+    "goalie-save-percentage": 0.544
+  },
+  "syracuse": {
+    "offense": "33.57%",
+    "defense-start": 55,
+    "defense-played": 99,
+    "ground-balls": "29.38%",
+    "face-offs-won": 0,
+    "face-off-percentage": 0,
+    "goalie-saves": "0%",
+    "goalie-save-percentage": 0
+  },
+  "maryland": {
+    "offense": "17.85%",
+    "defense-start": 55,
+    "defense-played": 137,
+    "ground-balls": "42.71%",
+    "face-offs-won": 159,
+    "face-off-percentage": "0.48%",
+    "goalie-saves": "98.45%",
+    "goalie-save-percentage": 0.259
+  }
+}

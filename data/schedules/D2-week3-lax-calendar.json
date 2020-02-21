@@ -1,0 +1,381 @@
+[
+  "",
+  {
+    "Home": "Alderson-Broaddus (0-0)",
+    "Away": "Chowan (1-2)",
+    "Time": "4:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Thursday, February 20",
+    "timestamp": "2020-02-20T21:29:07.353Z"
+  },
+  {
+    "Home": "St. Thomas Aquinas (0-1)",
+    "Away": "AIC (0-1)",
+    "Time": "3:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Friday, February 21",
+    "timestamp": "2020-02-20T21:29:07.363Z"
+  },
+  {
+    "Home": "Westminster (0-4)",
+    "Away": "CSU Pueblo (0-0)",
+    "Time": "3:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Friday, February 21",
+    "timestamp": "2020-02-20T21:29:07.371Z"
+  },
+  {
+    "Home": "#6 Belmont Abbey (3-0)",
+    "Away": "#16 Lenoir-Rhyne (2-0)",
+    "Time": "3:30 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Friday, February 21",
+    "timestamp": "2020-02-20T21:29:07.380Z"
+  },
+  {
+    "Home": "#17 Colorado Mesa (3-0)",
+    "Away": "Adams State (0-0)",
+    "Time": "6:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Friday, February 21",
+    "timestamp": "2020-02-20T21:29:07.388Z"
+  },
+  {
+    "Home": "Chestnut Hill (2-0)",
+    "Away": "#4 Mercyhurst (2-0)",
+    "Time": "11:00 am",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.407Z"
+  },
+  {
+    "Home": "District of Columbia (1-2)",
+    "Away": "Wilmington (0-0)",
+    "Time": "12:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.415Z"
+  },
+  {
+    "Home": "#12 Wingate (2-1)",
+    "Away": "UIndy (2-0)",
+    "Time": "12:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.425Z"
+  },
+  {
+    "Home": "Franklin Pierce (0-0)",
+    "Away": "Plymouth State (undefined-undefined)",
+    "Time": "12:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.437Z"
+  },
+  {
+    "Home": "Montevallo (2-1)",
+    "Away": "Lewis (1-1)",
+    "Time": "12:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.450Z"
+  },
+  {
+    "Home": "Walsh (0-0)",
+    "Away": "Molloy (0-2)",
+    "Time": "12:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.462Z"
+  },
+  {
+    "Home": "#11 Mount Olive (3-0)",
+    "Away": "#7 Seton Hill (2-0)",
+    "Time": "12:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.588Z"
+  },
+  {
+    "Home": "NYIT (2-0)",
+    "Away": "Saint Anselm (0-0)",
+    "Time": "12:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.597Z"
+  },
+  {
+    "Home": "Alabama Huntsville (1-1)",
+    "Away": "#13 Rockhurst (1-0)",
+    "Time": "12:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.605Z"
+  },
+  {
+    "Home": "#8 Pace (0-0)",
+    "Away": "Dominican (NY) (0-0)",
+    "Time": "1:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.613Z"
+  },
+  {
+    "Home": "Georgian Court (0-2)",
+    "Away": "Southern New Hampshire (0-0)",
+    "Time": "1:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.622Z"
+  },
+  {
+    "Home": "#2 Le Moyne (1-0)",
+    "Away": "#9 Mercy (2-0)",
+    "Time": "1:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.630Z"
+  },
+  {
+    "Home": "Florida Tech (1-2)",
+    "Away": "#1 Limestone (2-0)",
+    "Time": "1:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.639Z"
+  },
+  {
+    "Home": "North Greenville (0-3)",
+    "Away": "Lincoln Memorial (0-2)",
+    "Time": "1:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.647Z"
+  },
+  {
+    "Home": "#20 Florida Southern (1-1)",
+    "Away": "#5 Tampa (2-0)",
+    "Time": "1:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.657Z"
+  },
+  {
+    "Home": "Palm Beach Atlantic (1-0)",
+    "Away": "#14 Queens (2-1)",
+    "Time": "1:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.667Z"
+  },
+  {
+    "Home": "Frostburg (0-0)",
+    "Away": "Lake Erie (0-2)",
+    "Time": "1:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.679Z"
+  },
+  {
+    "Home": "Davis & Elkins (0-1)",
+    "Away": "Chowan (1-2)",
+    "Time": "1:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.688Z"
+  },
+  {
+    "Home": "Young Harris (1-2)",
+    "Away": "Saint Leo (1-1)",
+    "Time": "1:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.699Z"
+  },
+  {
+    "Home": "Felician (0-0)",
+    "Away": "Roberts Wesleyan (0-1)",
+    "Time": "2:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.722Z"
+  },
+  {
+    "Home": "Mars Hill (1-2)",
+    "Away": "Emmanuel (Ga.) (1-1)",
+    "Time": "3:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.732Z"
+  },
+  {
+    "Home": "Lees-McRae (0-4)",
+    "Away": "Tusculum (1-2)",
+    "Time": "3:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.742Z"
+  },
+  {
+    "Home": "Barton (0-4)",
+    "Away": "Newberry (1-1)",
+    "Time": "3:30 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Saturday, February 22",
+    "timestamp": "2020-02-20T21:29:07.752Z"
+  },
+  {
+    "Home": "Westminster (0-4)",
+    "Away": "Adams State (0-0)",
+    "Time": "12:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Sunday, February 23",
+    "timestamp": "2020-02-20T21:29:07.764Z"
+  },
+  {
+    "Home": "#17 Colorado Mesa (3-0)",
+    "Away": "CSU Pueblo (0-0)",
+    "Time": "12:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Sunday, February 23",
+    "timestamp": "2020-02-20T21:29:07.773Z"
+  },
+  {
+    "Home": "Coker (4-1)",
+    "Away": "Embry-Riddle (0-3)",
+    "Time": "1:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Sunday, February 23",
+    "timestamp": "2020-02-20T21:29:07.783Z"
+  },
+  {
+    "Home": "Newberry (1-1)",
+    "Away": "Florida Tech (1-2)",
+    "Time": "2:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Monday, February 24",
+    "timestamp": "2020-02-20T21:29:07.794Z"
+  },
+  {
+    "Home": "Georgian Court (0-2)",
+    "Away": "Molloy (0-2)",
+    "Time": "3:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Tuesday, February 25",
+    "timestamp": "2020-02-20T21:29:07.806Z"
+  },
+  {
+    "Home": "Alderson-Broaddus (0-0)",
+    "Away": "Frostburg (0-0)",
+    "Time": "4:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Tuesday, February 25",
+    "timestamp": "2020-02-20T21:29:07.816Z"
+  },
+  {
+    "Home": "Dominican (NY) (0-0)",
+    "Away": "AIC (0-1)",
+    "Time": "5:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Tuesday, February 25",
+    "timestamp": "2020-02-20T21:29:07.829Z"
+  },
+  {
+    "Home": "Felician (0-0)",
+    "Away": "St. Thomas Aquinas (0-1)",
+    "Time": "5:30 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Tuesday, February 25",
+    "timestamp": "2020-02-20T21:29:07.842Z"
+  },
+  {
+    "Home": "District of Columbia (1-2)",
+    "Away": "Davis & Elkins (0-1)",
+    "Time": "12:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Wednesday, February 26",
+    "timestamp": "2020-02-20T21:29:07.856Z"
+  },
+  {
+    "Home": "Saint Rose (0-0)",
+    "Away": "Post (0-1)",
+    "Time": "3:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Wednesday, February 26",
+    "timestamp": "2020-02-20T21:29:07.881Z"
+  },
+  {
+    "Home": "Catawba (0-2)",
+    "Away": "Young Harris (1-2)",
+    "Time": "4:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Wednesday, February 26",
+    "timestamp": "2020-02-20T21:29:07.893Z"
+  },
+  {
+    "Home": "Lewis (1-1)",
+    "Away": "#15 Lindenwood (3-0)",
+    "Time": "4:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Wednesday, February 26",
+    "timestamp": "2020-02-20T21:29:07.905Z"
+  },
+  {
+    "Home": "Mars Hill (1-2)",
+    "Away": "Shorter (0-3)",
+    "Time": "4:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Wednesday, February 26",
+    "timestamp": "2020-02-20T21:29:07.917Z"
+  },
+  {
+    "Home": "Lincoln Memorial (0-2)",
+    "Away": "Davenport (0-1)",
+    "Time": "4:00 pm",
+    "Watch": "",
+    "Coverage": "Preview",
+    "date": "Wednesday, February 26",
+    "timestamp": "2020-02-20T21:29:07.931Z"
+  }
+]

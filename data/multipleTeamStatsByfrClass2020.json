@@ -1,0 +1,103 @@
+{
+  "year": 2020,
+  "classStats": "fr",
+  "psu": {
+    "rank": "#1",
+    "record": "2 - 0",
+    "offense": "0%",
+    "defense-start": 0,
+    "defense-played": 11,
+    "ground-balls": "5.97%",
+    "face-offs-won": 0,
+    "face-off-percentage": 0,
+    "goalie-saves": 0,
+    "goalie-save-percentage": 0
+  },
+  "yale": "",
+  "uva": {
+    "rank": "#2",
+    "record": "1 - 0",
+    "offense": "23.81%",
+    "defense-start": 3,
+    "defense-played": 9,
+    "ground-balls": "15.91%",
+    "face-offs-won": 0,
+    "face-off-percentage": 0,
+    "goalie-saves": 0,
+    "goalie-save-percentage": 0
+  },
+  "uPenn": "",
+  "loyola": {
+    "rank": "#16",
+    "record": "0 - 1",
+    "offense": "18.75%",
+    "defense-start": 2,
+    "defense-played": 4,
+    "ground-balls": "20%",
+    "face-offs-won": 0,
+    "face-off-percentage": 0,
+    "goalie-saves": 0,
+    "goalie-save-percentage": 0
+  },
+  "hopkins": {
+    "rank": "#11",
+    "record": "1 - 0",
+    "offense": "8.7%",
+    "defense-start": 0,
+    "defense-played": 8,
+    "ground-balls": "2.38%",
+    "face-offs-won": 0,
+    "face-off-percentage": 0,
+    "goalie-saves": 0,
+    "goalie-save-percentage": 0
+  },
+  "cornell": "",
+  "denver": {
+    "rank": "#9",
+    "record": "1 - 0",
+    "offense": "30%",
+    "defense-start": 3,
+    "defense-played": 7,
+    "ground-balls": "60%",
+    "face-offs-won": 16,
+    "face-off-percentage": "0.76%",
+    "goalie-saves": 0,
+    "goalie-save-percentage": 0
+  },
+  "duke": {
+    "rank": "#13",
+    "record": "1 - 1",
+    "offense": "18.37%",
+    "defense-start": 5,
+    "defense-played": 10,
+    "ground-balls": "29.33%",
+    "face-offs-won": 0,
+    "face-off-percentage": 0,
+    "goalie-saves": 0,
+    "goalie-save-percentage": 0
+  },
+  "syracuse": {
+    "rank": "#5",
+    "record": "1 - 0",
+    "offense": "0%",
+    "defense-start": 0,
+    "defense-played": 1,
+    "ground-balls": "4.44%",
+    "face-offs-won": 0,
+    "face-off-percentage": 0,
+    "goalie-saves": 0,
+    "goalie-save-percentage": 0
+  },
+  "maryland": {
+    "rank": "#4",
+    "record": "2 - 0",
+    "offense": "16.13%",
+    "defense-start": 4,
+    "defense-played": 16,
+    "ground-balls": "14.06%",
+    "face-offs-won": 7,
+    "face-off-percentage": "0.39%",
+    "goalie-saves": 0,
+    "goalie-save-percentage": 0
+  }
+}

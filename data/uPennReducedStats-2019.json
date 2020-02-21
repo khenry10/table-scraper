@@ -1,0 +1,51 @@
+{
+  "offense": {
+    "fr": "24.93%",
+    "so": "17.16%",
+    "jr": "23.32%",
+    "sr": "34.58%"
+  },
+  "defense-start": {
+    "fr": 16,
+    "so": 28,
+    "jr": 48,
+    "sr": 52
+  },
+  "defense-played": {
+    "fr": 68,
+    "so": 58,
+    "jr": 105,
+    "sr": 115
+  },
+  "ground-balls": {
+    "fr": "13.39%",
+    "so": "6.89%",
+    "jr": "48.82%",
+    "sr": "25%"
+  },
+  "face-offs-won": {
+    "fr": 0,
+    "so": 2,
+    "jr": 270,
+    "sr": 23
+  },
+  "face-off-percentage": {
+    "fr": 0,
+    "so": "1%",
+    "jr": "0.63%",
+    "sr": "0.55%"
+  },
+  "goalie-saves": {
+    "fr": 0,
+    "so": 0,
+    "jr": 1.92,
+    "sr": 98.08
+  },
+  "goalie-save-percentage": {
+    "fr": 0,
+    "so": 0,
+    "jr": 0.444,
+    "sr": 0.265
+  },
+  "year": 2019
+}

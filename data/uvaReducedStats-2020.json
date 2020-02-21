@@ -1,0 +1,51 @@
+{
+  "offense": {
+    "fr": "23.81%",
+    "so": "9.52%",
+    "jr": "47.62%",
+    "sr": "19.05%"
+  },
+  "defense-start": {
+    "fr": 3,
+    "so": 1,
+    "jr": 3,
+    "sr": 2
+  },
+  "defense-played": {
+    "fr": 9,
+    "so": 4,
+    "jr": 7,
+    "sr": 6
+  },
+  "ground-balls": {
+    "fr": "15.91%",
+    "so": "22.73%",
+    "jr": "18.18%",
+    "sr": "29.55%"
+  },
+  "face-offs-won": {
+    "fr": 0,
+    "so": 10,
+    "jr": 0,
+    "sr": 0
+  },
+  "face-off-percentage": {
+    "fr": 0,
+    "so": "0.5%",
+    "jr": 0,
+    "sr": 0
+  },
+  "goalie-saves": {
+    "fr": 0,
+    "so": 0,
+    "jr": 100,
+    "sr": 0
+  },
+  "goalie-save-percentage": {
+    "fr": 0,
+    "so": 0,
+    "jr": 0.679,
+    "sr": 0
+  },
+  "year": 2020
+}
