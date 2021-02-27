@@ -1,72 +1,71 @@
 
+const tableScraper = require('table-scraper');
+const fs           = require('fs');
 
-        const tableScraper = require('table-scraper');
-        const fs           = require('fs');
+const {
+    roundToTwoPlacesTotal,
+    roundToThreePlaces,
+    getHtml
+}                 = require('../utils/utilites.js');
+const { xrayer }       = require('../utils/xrayer.js');
+const  { writeToJson } = require('../utils/writeToJson');
 
-        const {
-            roundToTwoPlacesTotal,
-            roundToThreePlaces,
-            getHtml
-        }                 = require('../utils/utilites.js');
-        const { xrayer }       = require('../utils/xrayer.js');
-        const  { writeToJson } = require('../utils/writeToJson');
+const  usilaCoachesPoll        = require('../mocks/usilaCoachesPoll');
 
-        const  usilaCoachesPoll        = require('../mocks/usilaCoachesPoll');
+const seasonResults = {
+'Overall Record': 0,
+'Home Loss'   : 0,
+'Home Win'   : 0,
+'Away Loss'   : 0,
+'Away Win'   : 0,
+'Away Record'   : 0,
+'Home Record'   : 0,
+'Home Win Pct'   : 0,
+'Away Win Pct'   : 0,
+'Overall Win Pct'   : 0,
+};
 
-        const seasonResults = {
-            'Overall Record': 0,
-            'Home Loss'   : 0,
-            'Home Win'   : 0,
-            'Away Loss'   : 0,
-            'Away Win'   : 0,
-            'Away Record'   : 0,
-            'Home Record'   : 0,
-            'Home Win Pct'   : 0,
-            'Away Win Pct'   : 0,
-            'Overall Win Pct'   : 0,
-        };
+function formatOverallRecord(wins, losses) {
 
-        function formatOverallRecord(wins, losses) {
+}
 
+function formatRecordData( schedule ) {
+
+    schedule.forEach( game => {
+
+        const opponent = game['1'];
+        const outcome  = game['2'];
+
+        if ( opponent[0] === '@') {
+
+            if ( outcome === 'W' ) {
+                seasonResults['Away Win'] = seasonResults['Away Win'] += 1;
+            } else {
+                seasonResults['Away Loss'] = seasonResults['Away Loss'] += 1;
+            }
+
+        } else {
+
+            if ( outcome === 'W' ) {
+                seasonResults['Home Win'] = seasonResults['Home Win'] += 1;
+            } else {
+                seasonResults['Home Loss'] = seasonResults['Home Loss'] += 1;
+            }
         }
 
-        function formatRecordData( schedule ) {
+        const overallWins  = parseInt(seasonResults['Home Win']) + parseInt(seasonResults['Away Win']);
+        const overallLosses = parseInt(seasonResults['Home Loss']+ seasonResults['Away Loss']);
 
-            schedule.forEach( game => {
+        seasonResults['Overall Record'] = overallWins + '-' + overallLosses;
 
-                const opponent = game['1'];
-                const outcome  = game['2'];
+        seasonResults['Home Record'] = seasonResults['Home Win'] + '-' + seasonResults['Home Loss'];
+        seasonResults['Home Win Pct'] = roundToThreePlaces(seasonResults['Home Win'] / ( seasonResults['Home Win'] + seasonResults['Home Loss']));
 
-                if ( opponent[0] === '@') {
+        seasonResults['Away Record'] = seasonResults['Away Win'] + '-' + seasonResults['Away Loss'];
+        seasonResults['Away Win Pct'] = roundToThreePlaces(seasonResults['Away Win'] / ( seasonResults['Away Win'] + seasonResults['Away Loss']));
 
-                    if ( outcome === 'W' ) {
-                        seasonResults['Away Win'] = seasonResults['Away Win'] += 1;
-                    } else {
-                        seasonResults['Away Loss'] = seasonResults['Away Loss'] += 1;
-                    }
-
-                } else {
-
-                    if ( outcome === 'W' ) {
-                        seasonResults['Home Win'] = seasonResults['Home Win'] += 1;
-                    } else {
-                        seasonResults['Home Loss'] = seasonResults['Home Loss'] += 1;
-                    }
-                }
-
-                const overallWins  = parseInt(seasonResults['Home Win']) + parseInt(seasonResults['Away Win']);
-                const overallLosses = parseInt(seasonResults['Home Loss']+ seasonResults['Away Loss']);
-
-                seasonResults['Overall Record'] = overallWins + '-' + overallLosses;
-
-                seasonResults['Home Record'] = seasonResults['Home Win'] + '-' + seasonResults['Home Loss'];
-                seasonResults['Home Win Pct'] = roundToThreePlaces(seasonResults['Home Win'] / ( seasonResults['Home Win'] + seasonResults['Home Loss']));
-
-                seasonResults['Away Record'] = seasonResults['Away Win'] + '-' + seasonResults['Away Loss'];
-                seasonResults['Away Win Pct'] = roundToThreePlaces(seasonResults['Away Win'] / ( seasonResults['Away Win'] + seasonResults['Away Loss']));
-
-                seasonResults['Overall Win Pct'] = roundToThreePlaces(overallWins / ( overallWins + overallLosses));
-    });
+        seasonResults['Overall Win Pct'] = roundToThreePlaces(overallWins / ( overallWins + overallLosses));
+});
 
     return seasonResults;
 }

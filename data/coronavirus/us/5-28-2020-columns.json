@@ -1,0 +1,50 @@
+[
+  {
+    "title": "date",
+    "field": "date"
+  },
+  {
+    "title": "state",
+    "field": "state"
+  },
+  {
+    "title": "Cases 24hr",
+    "field": "Cases 24hr"
+  },
+  {
+    "title": "Cases % 24hr",
+    "field": "Cases % 24hr"
+  },
+  {
+    "title": "Deaths 24hr",
+    "field": "Deaths 24hr"
+  },
+  {
+    "title": "Deaths % 24hr ",
+    "field": "Deaths % 24hr "
+  },
+  {
+    "title": "Tests 24hr",
+    "field": "Tests 24hr"
+  },
+  {
+    "title": "Positive Tests 24hr",
+    "field": "Positive Tests 24hr"
+  },
+  {
+    "title": "Total Recovered",
+    "field": "Total Recovered"
+  },
+  {
+    "title": "Total Active Infections",
+    "field": "Total Active Infections"
+  },
+  {
+    "title": "Total Cases",
+    "field": "Total Cases"
+  },
+  {
+    "title": "Total Deaths",
+    "field": "Total Deaths"
+  }
+]

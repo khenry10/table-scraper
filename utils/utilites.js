@@ -6,7 +6,11 @@ function roundToTwoPlacesTotal( num ) {
 }
 
 function roundToThreePlaces( num ) {
-    return Math.round(num *1000)/1000 +'%';
+    console.log(`num = ${num}`)
+    if (isNaN(num)){
+        return 0
+    }
+    return Math.round((num*100) *1000)/1000 +'%';
 }
 
 async function getHtml(url){
