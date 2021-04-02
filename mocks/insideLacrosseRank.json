@@ -1,151 +1,138 @@
 [
   [
     {
-      "RANK": "1",
-      "TEAM": "Penn State (10)",
-      "RECORD": "3-0",
-      "POINTS": "370",
-      "PREVIOUS": "1"
+      "Rank": "1",
+      "Team": "Duke (5 - 0)",
+      "Points": "416 (10)",
+      "Prev": "1"
     },
     {
-      "RANK": "2",
-      "TEAM": "Virginia (8)",
-      "RECORD": "2-0",
-      "POINTS": "348",
-      "PREVIOUS": "2"
+      "Rank": "2",
+      "Team": "Virginia (3 - 0)",
+      "Points": "415 (8)",
+      "Prev": "3"
     },
     {
-      "RANK": "3",
-      "TEAM": "Yale (1)",
-      "RECORD": "1-0",
-      "POINTS": "336",
-      "PREVIOUS": "3"
+      "Rank": "3",
+      "Team": "North Carolina (5 - 0)",
+      "Points": "412 (4)",
+      "Prev": "2"
     },
     {
-      "RANK": "4",
-      "TEAM": "Maryland",
-      "RECORD": "3-0",
-      "POINTS": "321",
-      "PREVIOUS": "4"
+      "Rank": "4",
+      "Team": "Maryland (2 - 0)",
+      "Points": "382",
+      "Prev": "5"
     },
     {
-      "RANK": "5",
-      "TEAM": "Syracuse",
-      "RECORD": "2-0",
-      "POINTS": "307",
-      "PREVIOUS": "5"
+      "Rank": "5",
+      "Team": "Georgetown (2 - 0)",
+      "Points": "320",
+      "Prev": "9"
     },
     {
-      "RANK": "6",
-      "TEAM": "Notre Dame",
-      "RECORD": "1-0",
-      "POINTS": "264",
-      "PREVIOUS": "7"
+      "Rank": "6",
+      "Team": "Ohio State (1 - 1)",
+      "Points": "314",
+      "Prev": "8"
     },
     {
-      "RANK": "7",
-      "TEAM": "North Carolina",
-      "RECORD": "3-0",
-      "POINTS": "248",
-      "PREVIOUS": "8"
+      "Rank": "7",
+      "Team": "Army (2 - 1)",
+      "Points": "293",
+      "Prev": "13"
     },
     {
-      "RANK": "8",
-      "TEAM": "Penn",
-      "RECORD": "0-1",
-      "POINTS": "243",
-      "PREVIOUS": "6"
+      "Rank": "8",
+      "Team": "Notre Dame (1 - 0)",
+      "Points": "281",
+      "Prev": "7"
     },
     {
-      "RANK": "9",
-      "TEAM": "Army",
-      "RECORD": "3-0",
-      "POINTS": "239",
-      "PREVIOUS": "14"
+      "Rank": "9",
+      "Team": "Syracuse (0 - 1)",
+      "Points": "245",
+      "Prev": "4"
     },
     {
-      "RANK": "10",
-      "TEAM": "Duke",
-      "RECORD": "2-1",
-      "POINTS": "199",
-      "PREVIOUS": "13"
+      "Rank": "10",
+      "Team": "Rutgers (2 - 0)",
+      "Points": "240",
+      "Prev": "17"
     },
     {
-      "RANK": "11",
-      "TEAM": "Cornell",
-      "RECORD": "1-0",
-      "POINTS": "194",
-      "PREVIOUS": "12"
+      "Rank": "11",
+      "Team": "Denver (4 - 2)",
+      "Points": "219",
+      "Prev": "10"
     },
     {
-      "RANK": "12",
-      "TEAM": "Loyola",
-      "RECORD": "1-1",
-      "POINTS": "169",
-      "PREVIOUS": "16"
+      "Rank": "12",
+      "Team": "Loyola (2 - 1)",
+      "Points": "217",
+      "Prev": "11"
     },
     {
-      "RANK": "13",
-      "TEAM": "Denver",
-      "RECORD": "1-1",
-      "POINTS": "140",
-      "PREVIOUS": "9"
+      "Rank": "13",
+      "Team": "Penn State (0 - 2)",
+      "Points": "182",
+      "Prev": "6"
     },
     {
-      "RANK": "14",
-      "TEAM": "Georgetown",
-      "RECORD": "2-0",
-      "POINTS": "138",
-      "PREVIOUS": "15"
+      "Rank": "14",
+      "Team": "UMass (0 - 0)",
+      "Points": "138",
+      "Prev": "12"
     },
     {
-      "RANK": "15",
-      "TEAM": "Johns Hopkins",
-      "RECORD": "1-1",
-      "POINTS": "81",
-      "PREVIOUS": "11"
+      "Rank": "15",
+      "Team": "High Point (1 - 2)",
+      "Points": "123",
+      "Prev": "15"
     },
     {
-      "RANK": "16",
-      "TEAM": "Air Force",
-      "RECORD": "2-1",
-      "POINTS": "79",
-      "PREVIOUS": "17"
+      "Rank": "16",
+      "Team": "Stony Brook (2 - 1)",
+      "Points": "101",
+      "Prev": "20"
     },
     {
-      "RANK": "17",
-      "TEAM": "Richmond",
-      "RECORD": "1-1",
-      "POINTS": "65",
-      "PREVIOUS": "19"
+      "Rank": "17",
+      "Team": "Lehigh (1 - 0)",
+      "Points": "95",
+      "Prev": "14"
     },
     {
-      "RANK": "18",
-      "TEAM": "Lehigh",
-      "RECORD": "1-1",
-      "POINTS": "52",
-      "PREVIOUS": "18"
+      "Rank": "18",
+      "Team": "Richmond (1 - 2)",
+      "Points": "81",
+      "Prev": "16"
     },
     {
-      "RANK": "19",
-      "TEAM": "Ohio State",
-      "RECORD": "2-1",
-      "POINTS": "50",
-      "PREVIOUS": "10"
+      "Rank": "19",
+      "Team": "Navy (1 - 0)",
+      "Points": "37",
+      "Prev": "--"
     },
     {
-      "RANK": "20",
-      "TEAM": "Delaware",
-      "RECORD": "2-0",
-      "POINTS": "35",
-      "PREVIOUS": "NR"
+      "Rank": "20",
+      "Team": "UAlbany (1 - 0)",
+      "Points": "27",
+      "Prev": "24"
+    }
+  ],
+  [
+    {
+      "Week": "Week 2",
+      "Team": "Duke"
     },
     {
-      "RANK": "",
-      "TEAM": "",
-      "RECORD": "",
-      "POINTS": "",
-      "PREVIOUS": ""
+      "Week": "Week 1",
+      "Team": "Duke"
+    },
+    {
+      "Week": "Preseason",
+      "Team": "Duke"
     }
   ]
 ]

@@ -1,5 +1,5 @@
 
-const { fetcher }  = require('../fetcher.js');
+const { fetcher }  = require('./fetcher.js');
 
 function roundToTwoPlacesTotal( num ) {
     return Math.round(num *100)/100;
