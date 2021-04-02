@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "rankings": "node scrapers/rankings/getRankings.js"
+    "rankings": "node scrapers/rankings/getRankings.js",
+    "game-calendar": "node scrapers/game-calendar/create.js"
   },
   "author": "",
   "license": "ISC",
