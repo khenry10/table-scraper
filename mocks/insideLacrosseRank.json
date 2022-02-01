@@ -1,138 +1,162 @@
-[
-  [
-    {
-      "Rank": "1",
-      "Team": "Duke (5 - 0)",
-      "Points": "416 (10)",
-      "Prev": "1"
-    },
-    {
-      "Rank": "2",
-      "Team": "Virginia (3 - 0)",
-      "Points": "415 (8)",
-      "Prev": "3"
-    },
-    {
-      "Rank": "3",
-      "Team": "North Carolina (5 - 0)",
-      "Points": "412 (4)",
-      "Prev": "2"
-    },
-    {
-      "Rank": "4",
-      "Team": "Maryland (2 - 0)",
-      "Points": "382",
-      "Prev": "5"
-    },
-    {
-      "Rank": "5",
-      "Team": "Georgetown (2 - 0)",
-      "Points": "320",
-      "Prev": "9"
-    },
-    {
-      "Rank": "6",
-      "Team": "Ohio State (1 - 1)",
-      "Points": "314",
-      "Prev": "8"
-    },
-    {
-      "Rank": "7",
-      "Team": "Army (2 - 1)",
-      "Points": "293",
-      "Prev": "13"
-    },
-    {
-      "Rank": "8",
-      "Team": "Notre Dame (1 - 0)",
-      "Points": "281",
-      "Prev": "7"
-    },
-    {
-      "Rank": "9",
-      "Team": "Syracuse (0 - 1)",
-      "Points": "245",
-      "Prev": "4"
-    },
-    {
-      "Rank": "10",
-      "Team": "Rutgers (2 - 0)",
-      "Points": "240",
-      "Prev": "17"
-    },
-    {
-      "Rank": "11",
-      "Team": "Denver (4 - 2)",
-      "Points": "219",
-      "Prev": "10"
-    },
-    {
-      "Rank": "12",
-      "Team": "Loyola (2 - 1)",
-      "Points": "217",
-      "Prev": "11"
-    },
-    {
-      "Rank": "13",
-      "Team": "Penn State (0 - 2)",
-      "Points": "182",
-      "Prev": "6"
-    },
-    {
-      "Rank": "14",
-      "Team": "UMass (0 - 0)",
-      "Points": "138",
-      "Prev": "12"
-    },
-    {
-      "Rank": "15",
-      "Team": "High Point (1 - 2)",
-      "Points": "123",
-      "Prev": "15"
-    },
-    {
-      "Rank": "16",
-      "Team": "Stony Brook (2 - 1)",
-      "Points": "101",
-      "Prev": "20"
-    },
-    {
-      "Rank": "17",
-      "Team": "Lehigh (1 - 0)",
-      "Points": "95",
-      "Prev": "14"
-    },
-    {
-      "Rank": "18",
-      "Team": "Richmond (1 - 2)",
-      "Points": "81",
-      "Prev": "16"
-    },
-    {
-      "Rank": "19",
-      "Team": "Navy (1 - 0)",
-      "Points": "37",
-      "Prev": "--"
-    },
-    {
-      "Rank": "20",
-      "Team": "UAlbany (1 - 0)",
-      "Points": "27",
-      "Prev": "24"
-    }
-  ],
-  [
-    {
-      "Week": "Week 2",
-      "Team": "Duke"
-    },
-    {
-      "Week": "Week 1",
-      "Team": "Duke"
-    },
-    {
-      "Week": "Preseason",
-      "Team": "Duke"
-    }
-  ]
-]
+{
+  "Maryland": {
+    "team": "Maryland",
+    "rank": "1",
+    "points": 418,
+    "lastWeekRank": "2",
+    "record": "8 - 0",
+    "firstPlaceVotes": 19
+  },
+  "Notre Dame": {
+    "team": "Notre Dame",
+    "rank": "2",
+    "points": 394,
+    "lastWeekRank": "4",
+    "record": "6 - 1",
+    "firstPlaceVotes": 2
+  },
+  "Virginia": {
+    "team": "Virginia",
+    "rank": "3",
+    "points": 369,
+    "lastWeekRank": "6",
+    "record": "9 - 3",
+    "firstPlaceVotes": 0
+  },
+  "Duke": {
+    "team": "Duke",
+    "rank": "4",
+    "points": 363,
+    "lastWeekRank": "1",
+    "record": "11 - 1",
+    "firstPlaceVotes": 0
+  },
+  "North Carolina": {
+    "team": "North Carolina",
+    "rank": "5",
+    "points": 332,
+    "lastWeekRank": "3",
+    "record": "8 - 2",
+    "firstPlaceVotes": 0
+  },
+  "Denver": {
+    "team": "Denver",
+    "rank": "6",
+    "points": 305,
+    "lastWeekRank": "5",
+    "record": "9 - 2",
+    "firstPlaceVotes": 0
+  },
+  "Lehigh": {
+    "team": "Lehigh",
+    "rank": "7",
+    "points": 288,
+    "lastWeekRank": "7",
+    "record": "7 - 0",
+    "firstPlaceVotes": 0
+  },
+  "Rutgers": {
+    "team": "Rutgers",
+    "rank": "8",
+    "points": 273,
+    "lastWeekRank": "8",
+    "record": "6 - 2",
+    "firstPlaceVotes": 0
+  },
+  "Syracuse": {
+    "team": "Syracuse",
+    "rank": "9",
+    "points": 261,
+    "lastWeekRank": "9",
+    "record": "5 - 3",
+    "firstPlaceVotes": 0
+  },
+  "Army": {
+    "team": "Army",
+    "rank": "10",
+    "points": 240,
+    "lastWeekRank": "10",
+    "record": "5 - 2",
+    "firstPlaceVotes": 0
+  },
+  "Georgetown": {
+    "team": "Georgetown",
+    "rank": "11",
+    "points": 222,
+    "lastWeekRank": "10",
+    "record": "8 - 1",
+    "firstPlaceVotes": 0
+  },
+  "Ohio State": {
+    "team": "Ohio State",
+    "rank": "12",
+    "points": 143,
+    "lastWeekRank": "14",
+    "record": "4 - 4",
+    "firstPlaceVotes": 0
+  },
+  "Drexel": {
+    "team": "Drexel",
+    "rank": "13",
+    "points": 131,
+    "lastWeekRank": "22",
+    "record": "5 - 2",
+    "firstPlaceVotes": 0
+  },
+  "Loyola": {
+    "team": "Loyola",
+    "rank": "14",
+    "points": 121,
+    "lastWeekRank": "13",
+    "record": "5 - 4",
+    "firstPlaceVotes": 0
+  },
+  "Hofstra": {
+    "team": "Hofstra",
+    "rank": "15",
+    "points": 105,
+    "lastWeekRank": "18",
+    "record": "6 - 3",
+    "firstPlaceVotes": 0
+  },
+  "Delaware": {
+    "team": "Delaware",
+    "rank": "16",
+    "points": 97,
+    "lastWeekRank": "12",
+    "record": "7 - 2",
+    "firstPlaceVotes": 0
+  },
+  "Richmond": {
+    "team": "Richmond",
+    "rank": "17",
+    "points": 91,
+    "lastWeekRank": "15",
+    "record": "4 - 4",
+    "firstPlaceVotes": 0
+  },
+  "Stony Brook": {
+    "team": "Stony Brook",
+    "rank": "18",
+    "points": 85,
+    "lastWeekRank": "17",
+    "record": "8 - 3",
+    "firstPlaceVotes": 0
+  },
+  "UAlbany": {
+    "team": "UAlbany",
+    "rank": "19",
+    "points": 49,
+    "lastWeekRank": "23",
+    "record": "6 - 3",
+    "firstPlaceVotes": 0
+  },
+  "Vermont": {
+    "team": "Vermont",
+    "rank": "20",
+    "points": 40,
+    "lastWeekRank": "24",
+    "record": "5 - 3",
+    "firstPlaceVotes": 0
+  }
+}

@@ -2,6 +2,8 @@
 const insideLacrosseRankModel = require('./models/insideLacrosseRankModel');
 const usilaRankModel = require('./models/usilaRankModel');
 
+const { writeToJson } = require('../../utils/writeToJson');
+
 const rankingSiteModels = [
     insideLacrosseRankModel,
     usilaRankModel
@@ -24,9 +26,10 @@ async function getAndFormatRankings(rankingSiteModel) {
     await rankModel.setAllResultsArray(rankFormatted);
     await rankModel.setAllResultsObject(allRankResultsObject);
 
-    console.log('rankModel 2', rankModel);
+    console.log('rankModel allResultsArray', rankModel.allResultsArray);
+    console.log('rankModel allResultsObj', rankModel.allResultsObj);
 
-    // writeToJson(writeToFile, await insideLacrosseRank);
+    writeToJson(rankModel.writeToFile, rankModel.allResultsObj);
     return rankFormatted;
 }
 

@@ -19,7 +19,7 @@ module.exports = class insideLacrosseModel extends rankingModel {
         this.points       = points;
         this.lastWeekRank = parseInt(lastWeekRank) || "-";
         this.url          = `${url}${divisionMap[this.division]}/polls`;
-        this.writeToFile  = 'mocks/insideLacrosseRank.json';
+        this.writeToFile  = 'mocks/insideLacrosseRank-week9.json';
         this.source       = 'IL';
     }
 
@@ -44,17 +44,17 @@ module.exports = class insideLacrosseModel extends rankingModel {
         this.reformatTeamName();
     }
 
-    toJson() {
-        this.reformat();
-        return {
-            team            : this.team,
-            rank            : this.rank,
-            points          : this.points,
-            lastWeekRank    : this.lastWeekRank,
-            record          : this.record,
-            firstPlaceVotes : this.firstPlaceVotes
-        }
-    }
+    // toJson() {
+    //     this.reformat();
+    //     return {
+    //         team            : this.team,
+    //         rank            : this.rank,
+    //         points          : this.points,
+    //         lastWeekRank    : this.lastWeekRank,
+    //         record          : this.record,
+    //         firstPlaceVotes : this.firstPlaceVotes
+    //     }
+    // }
 
     async get() {
         const results = await tableScraper.get(this.url);

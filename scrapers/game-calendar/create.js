@@ -7,13 +7,14 @@ const cheerio      = require('cheerio');
 const  { writeToJson } = require('../../utils/writeToJson');
 
 function createAndFormatGame(game, winsAndLosses, rankings, gameDate) {
+    console.log('game', game);
+    // console.log('winsAndLosses', winsAndLosses);
+    //console.log('rankings', rankings);
+    console.log('gameDate', gameDate);
     const Home = winsAndLosses.find( r => r.Team === game.Home );
     let Away = winsAndLosses.find( r => r.Team === game.Away );
+    console.log('Home', Home);
 
-    console.log('game ', game);
-    console.log('winsAndLosses ', winsAndLosses);
-    console.log('Away ', Away);
-    console.log('rankings 2 ', rankings);
     let homeRank, awayRank;
 
     if ( !Away ) {
@@ -21,8 +22,8 @@ function createAndFormatGame(game, winsAndLosses, rankings, gameDate) {
     }
 
     rankings.forEach( r => {
-        // console.log('r = ', r)
-        if ( r.SCHOOL == Home.Team ){
+        //console.log('r = ', r)
+        if ( Home && Home.team && r.SCHOOL == Home.Team ){
             homeRank = r;
         } else if ( r.SCHOOL == Away.Team ){
             awayRank = r;
@@ -32,9 +33,12 @@ function createAndFormatGame(game, winsAndLosses, rankings, gameDate) {
     const homeTeamRank = homeRank ? "#" + homeRank.Rank + " " : "";
     const awayTeamRank = awayRank ? "#" + awayRank.Rank + " " : "";
 
+    const h = !Home ? {L: '-', H: '-'} : Home;
+    const a = !Away ? {L: '-', H: '-'} : Away;
+
     game.date =  gameDate;
-    game.Home =  homeTeamRank + game.Home + " ("+ Home['W']  +"-"+ Home['L']  +")";
-    game.Away =  awayTeamRank + game.Away + " ("+ Away['W']  +"-"+ Away['L']  +")";
+    game.Home =  homeTeamRank + game.Home + " ("+ h['W']  +"-"+ h['L']  +")";
+    game.Away =  awayTeamRank + game.Away + " ("+ a['W']  +"-"+ a['L']  +")";
     game.timestamp = new Date();
     return game
 }
@@ -52,6 +56,11 @@ function schedulerMapper(table, index, winsAndLosses, ranking, gameDate ) {
     if ( index === 0 ) {
         return '';
     }
+
+    // return scheduleOfGames.map( (game) => {
+    //     return createAndFormatGame(game, winsAndLosses, ranking, gameDate);
+    // });
+
     return combineAndProcess(scheduleOfGames, winsAndLosses, ranking, gameDate);
 }
 
@@ -63,7 +72,7 @@ function schedulerMapper(table, index, winsAndLosses, ranking, gameDate ) {
   }]
  */
 function normalizeSchoolName( teamRankings ) {
-    console.log('teamRankings', teamRankings);
+    //console.log('teamRankings', teamRankings);
     return teamRankings.map( r => {
         if ( r.Team ) {
             const split = r.Team.split(" (");
@@ -115,55 +124,67 @@ function createArrOfDate (body) {
     })
 }
 
-/**
- *  @description fusing together 3 different data points.  1) Team Records (wins/losses) 2) Team Rank 3) Team Schedule and home/away team
- *  @returns {JSON} file
- */
-async function createGameCalendar( division, week ) {
-
+const buildUrl = (division, page) => {
     const ilDivisionUrls = {
         1: 'di',
         2: 'dii',
         3: 'diii'
     };
 
+    return `https://www.insidelacrosse.com/league/${ilDivisionUrls[division]}/${page}`;
+};
+
+/**
+ *  @description fusing together 3 different data points.  1) Team Records (wins/losses) 2) Team Rank 3) Team Schedule and home/away team
+ *  @returns {JSON} file
+ */
+async function createGameCalendar( division, week ) {
+
     const ncaaDivisionUrls = {
         1: 'd1',
         2: 'd2',
         3: 'd3'
     };
-    const
-        teamsRecordUrl    = 'https://www.insidelacrosse.com/league/'+ ilDivisionUrls[division] +'/teams',
-        // teamRankingsUrl   = 'https://www.ncaa.com/rankings/lacrosse-men/'+ ncaaDivisionUrls[division] +'/usila-coaches',
-        teamRankingsUrl   = 'https://www.insidelacrosse.com/league/'+ ilDivisionUrls[division] +'/polls/2021',
-        gameCalendarUrl   = 'https://www.insidelacrosse.com/league/'+ ilDivisionUrls[division] +'/calendar/19';
 
     //retrieves data
     const
-        winsAndLosses     = await tableScraper.get(teamsRecordUrl),
-        rankingData       = await tableScraper.get(teamRankingsUrl),
-        htmlGamesSchedule = await boxScraper(gameCalendarUrl);
+        [winsAndLosses]   = await tableScraper.get(buildUrl(division, 'teams')),
+        rankingData       = await tableScraper.get(buildUrl(division, 'polls')),
+        htmlGamesSchedule = await boxScraper(buildUrl(division, 'calendar'));
 
-    console.log('rankingData ', rankingData);
-    console.log('rankingData ', rankingData[0].length)
+    // console.log('rankingData ', rankingData);
+    console.log('rankingData ', rankingData[0].length);
 
     //cleans & processes data
     const
         ranking           = normalizeSchoolName(await rankingData[0]),
         gameDates         = await createArrOfDate(htmlGamesSchedule),
-        scheduleOfGames   = htmlGamesSchedule.map( (table,  i) => { return schedulerMapper(table, i, winsAndLosses[0], ranking, gameDates[i-1])});
+        scheduleOfGames   = htmlGamesSchedule.map( (table,  i) => {
+            // const scheduleOfGames = tabletojson.convert('<table>' + table + '</table>')[0];
+            //
+            // //conversion creates duplicate of the first table of dates
+            // if ( i === 0 ) return '';
+            //
+             console.log('winsAndLosses = ',winsAndLosses);
+             console.log('ranking = ',ranking);
+            // return scheduleOfGames.map( (game) => {
+            //     return createAndFormatGame(game, winsAndLosses, ranking, gameDates[i-1]);
+            // });
+            return schedulerMapper(table, i, winsAndLosses, ranking, gameDates[i-1])
+        });
 
     const data = [].concat.apply([], await scheduleOfGames);
 
     const year            = new Date().getFullYear();
     const divisionDisplay = ncaaDivisionUrls[division].toUpperCase();
     const file            = `data/game-calendar/${year}/${divisionDisplay}-${week}-calendar.json`;
-    writeToJson( file, data);
+    writeToJson(file, data);
 }
 
 function initializeGameCalendars() {
-    for( let i = 1; i <=3; i++) {
-        createGameCalendar(i, 'week6');
+    for( let i = 1; i <= 3; i++) {
+        console.log(`starting division ${i}`);
+        createGameCalendar(i, 'week11');
     }
 }
 
