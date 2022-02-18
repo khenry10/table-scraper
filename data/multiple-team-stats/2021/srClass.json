@@ -1,0 +1,19 @@
+{
+  "year": 2021,
+  "classStats": "sr",
+  "description": "For the 2021 season, the sr accounted for the following output. This is theoricatlly what a team is losing if it's the SR class. Need to check covid elibibility. ",
+  "maryland": {
+    "2021-rank": "#1",
+    "2021-record": "15 - 1",
+    "2022-rank": "#1",
+    "2022-record": "2 - 0",
+    "offense": "66.18%",
+    "defense-start": 96,
+    "defense-played": 184,
+    "ground-balls": "53.92%",
+    "face-offs-won": 129,
+    "face-off-percentage": "0.36%",
+    "goalie-saves": 3.95,
+    "goalie-save-percentage": 0.538
+  }
+}

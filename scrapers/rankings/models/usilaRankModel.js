@@ -7,7 +7,7 @@ module.exports = class usilaRankModel extends rankingModel {
   constructor() {
       super();
       this.url    = 'https://usila.org/sports/2021/2/15/mlax2021WK2polld1.aspx';
-      this.writeToFile  = `mocks/usilaRank-week9.json`;
+      this.writeToFile  = `usilaRank-week1.json`;
       this.source = 'USILA';
   }
 

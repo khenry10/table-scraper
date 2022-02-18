@@ -1,0 +1,51 @@
+{
+  "offense": {
+    "fr": "4.46%",
+    "so": "26.75%",
+    "jr": "13.38%",
+    "sr": "55.41%"
+  },
+  "defense-start": {
+    "fr": 5,
+    "so": 29,
+    "jr": 25,
+    "sr": 85
+  },
+  "defense-played": {
+    "fr": 35,
+    "so": 79,
+    "jr": 97,
+    "sr": 175
+  },
+  "ground-balls": {
+    "fr": "2.82%",
+    "so": "12.41%",
+    "jr": "21.8%",
+    "sr": "57.33%"
+  },
+  "face-offs-won": {
+    "fr": 2,
+    "so": 24,
+    "jr": 0,
+    "sr": 178
+  },
+  "face-off-percentage": {
+    "fr": "0.5%",
+    "so": "0.42%",
+    "jr": 0,
+    "sr": "0.52%"
+  },
+  "goalie-saves": {
+    "fr": 0,
+    "so": 2.98,
+    "jr": 7.74,
+    "sr": 89.29
+  },
+  "goalie-save-percentage": {
+    "fr": 0,
+    "so": 0.455,
+    "jr": 0.394,
+    "sr": 0.534
+  },
+  "year": 2021
+}

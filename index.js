@@ -29,6 +29,29 @@ function xrayer( body, cssSelector) {
     })
 }
 
+/**
+ * @description - reformats roster array into obj with the player# being the key
+ * @param roster - [
+ {
+    '#': '1',
+    Name: 'connor shellenberger',
+    Pos: 'a',
+    Yr: 'fr',
+    Hometown: 'charlottesville, va',
+    ....
+  },
+...]
+ * @returns {{}} -> {
+ *     '1': {
+    '#': '1',
+    Name: 'connor shellenberger',
+    Pos: 'a',
+    Yr: 'fr',
+    Hometown: 'charlottesville, va',
+    ...
+   }
+  }
+ */
 function formatRoster(roster) {
     const rosterObj = {};
 
@@ -39,34 +62,13 @@ function formatRoster(roster) {
     } else {
         console.error('roster is undefined')
     }
-
-
     return rosterObj;
 }
 
-// {
-//     "Opponents": "1",
-//     "Player": "2-2",
-//     "GP-GS": "7",
-//     "G": "11",
-//     "A": "18",
-//     "PTS": "16",
-//     "SH": ".438",
-//     "SH%": "10",
-//     "SOG": ".625",
-//     "SOG%": "0",
-//     "UP": "0",
-//     "DWN": "2",
-//     "GB": "5",
-//     "TO": "0",
-//     "CT": "0-0",
-//     "FO": ".000",
-//     "FO%": "0-00:00",
-//     "PN-PIM": "View Bio"
-// },
 function formatStats(playerStats, roster) {
-
-   return playerStats.map( (player, playerStatsIndex) => {
+   // console.log('playerStats =', playerStats)
+    if (!playerStats) throw Error('No playerStats')
+    return playerStats.map( (player, playerStatsIndex) => {
         const keys = Object.keys(player);
         const values = Object.values(player);
         const newStatObj = {};
@@ -172,6 +174,7 @@ function roundToTwoPlacesTotal( num ) {
 }
 
 function reduceTeamStats(aggregateTeamData, psuStatsTable) {
+    // console.log('psuStatsTable =', psuStatsTable)
     const overallTeamStats = psuStatsTable[psuStatsTable.length-2];
 
     const reducedStats = {
@@ -211,6 +214,7 @@ function reduceTeamStats(aggregateTeamData, psuStatsTable) {
 }
 
 function splitOutByClass( classYear, reducedStats, rankAndRecord) {
+    // console.log('rankAndRecord = ', rankAndRecord)
     const returnData = {...rankAndRecord};
     for (const key1 in reducedStats)  {
         const stat = reducedStats[key1];
@@ -256,151 +260,146 @@ async function getRecordAndRankFromRosterHtml( html ){
     return {rank, record};
 }
 
-async function getTeamStats() {
-
+/**
+ *
+ * @param year
+ * @param teamName - should be name used on www.lax.com url params
+ * @returns {{name: *, rootDomain: string, statsUrl: (string|string), rosterUrl: string, cssSelector: string}}
+ */
+const createTeamConfig = (year, teamName ) => {
     const
-        statsUrlPath       = '/sports/mens-lacrosse/stats/2020#individual',
-        goalieStatsUrlPath = '/sports/mens-lacrosse/stats/2020#individual-overall-goalkeeping',
+        // statsUrlPath       = `/sports/mens-lacrosse/stats/${year}#individual`,
+        statsUrlPath       = `/sports/mens-lacrosse/stats/${year}`,
+        goalieStatsUrlPath = `/sports/mens-lacrosse/stats/${year}#individual-overall-goalkeeping`,
         goalieCssSelector  = '#team-roster-goalie@html',
-        rosterUrlPath      = 'https://www.lax.com/team?url_name=TEAM_NAME&year=2020',
+        rosterUrlPath      = `https://www.lax.com/team?url_name=${teamName}&year=${year}`,
         rosterCssSelector  = '#team-roster-main@html',
         statsCssSelector   = '.sidearm-table-overflow-on-x-large@html';
 
-    const psu = {
-        name: 'psu',
-        rootDomain: 'https://gopsusports.com',
-        statsUrl:'https://gopsusports.com/sports/mens-lacrosse/stats/2020#individual',
-        rosterUrl: 'https://www.lax.com/team?url_name=penn-state&year=2020',
-        cssSelector: '.sidearm-table-overflow-on-x-large@html'
+    const teams = {
+        'north-carolina': {
+            rootDomain: 'https://goheels.com',
+            statsUrl: `https://goheels.com/sports/mens-lacrosse/stats/${year}#individual`,
+        },
+        'penn-state': {
+            rootDomain: 'https://gopsusports.com',
+            statsUrl: `https://gopsusports.com/sports/mens-lacrosse/stats/${year}#individual`,
+        },
+        'yale': {
+            rootDomain: 'https://yalebulldogs.com',
+        },
+        'virginia' : {
+            rootDomain: 'https://virginiasports.com',
+            statsUrl: `https://static.virginiasports.com/custompages/sports/m-lacros/stats/${year}/teamcume.htm#TEAM.IND`
+        },
+        'maryland': {
+            rootDomain: 'https://umterps.com',
+        },
+        'pennsylvania' : {
+            rootDomain: 'https://pennathletics.com/',
+        },
+        'duke': {
+            rootDomain: 'https://goduke.com/',
+        },
+        'denver': {
+            rootDomain: 'https://denverpioneers.com/',
+        },
+        'johns-hopkins': {
+            rootDomain: 'https://hopkinssports.com/',
+        },
+        'cornell': {
+            rootDomain: 'https://cornellbigred.com/',
+        },
+        'loyola': {
+            rootDomain: 'https://loyolagreyhounds.com/',
+        },
+        'army': {
+            rootDomain: 'https://goarmywestpoint.com/',
+        },
+        'lehigh': {
+            rootDomain: 'https://lehighsports.com/',
+        },
+        'syracuse': {
+            rootDomain: 'https://cuse.com',
+        }
     };
 
-    const yale = {
-        name: 'yale',
-        rootDomain: 'https://yalebulldogs.com',
-        statsUrl: 'https://yalebulldogs.com/sports/mens-lacrosse/stats/2020',
-        rosterUrl: 'https://www.lax.com/team?url_name=yale&year=2020',
-        cssSelector: '.sidearm-table-overflow-on-x-large@html'
-    };
+    const teamConfig = teams[teamName];
+    const statsUrl = teamConfig.statsUrl || teamConfig.rootDomain + statsUrlPath;
 
-    const uva = {
-        name: 'uva',
-        rootDomain: 'https://virginiasports.com',
-        statsUrl: 'https://virginiasports.com/sports/mens-lacrosse/stats/2020',
-        rosterUrl: 'https://www.lax.com/team?url_name=virginia&year=2020',
-        cssSelector: '.sidearm-table-overflow-on-x-large@html'
-    };
-
-    const maryland = {
-        name: 'maryland',
-        rootDomain: 'https://umterps.com',
-        statsUrl: 'https://umterps.com' + statsUrlPath ,
-        rosterUrl: rosterUrlPath.replace('TEAM_NAME', 'maryland'),
+    return {
+        name: teamName,
+        rootDomain: teamConfig.rootDomain,
+        statsUrl,
+        goalieStatsUrl: teams[teamName].rootDomain + goalieStatsUrlPath,
+        rosterUrl: rosterUrlPath,
         cssSelector: statsCssSelector,
-    };
+        rosterCssSelector,
+        goalieCssSelector
+    }
+}
 
-    const syracuse = {
-        name: 'syracuse',
-        rootDomain: 'https://cuse.com',
-        statsUrl: 'https://cuse.com' + statsUrlPath ,
-        rosterUrl: rosterUrlPath.replace('TEAM_NAME', 'syracuse'),
-        cssSelector: statsCssSelector,
-    };
+// @TODO add UMass
+/**
+ *
+ * @param {string} classYr
+ * @param {integer} year
+ * @returns {Promise<void>}
+ */
+async function getTeamStats(classYr, year) {
 
-    const uPenn = {
-        name: 'uPenn',
-        rootDomain: 'https://pennathletics.com/',
-        statsUrl: 'https://pennathletics.com/' + statsUrlPath ,
-        rosterUrl: rosterUrlPath.replace('TEAM_NAME', 'pennsylvania'),
-        cssSelector: statsCssSelector,
-    };
-
-    const duke = {
-        name: 'duke',
-        rootDomain: 'https://goduke.com/',
-        statsUrl: 'https://goduke.com/' + statsUrlPath ,
-        rosterUrl: rosterUrlPath.replace('TEAM_NAME', 'duke'),
-        cssSelector: statsCssSelector,
-    };
-
-    const denver = {
-        name: 'denver',
-        rootDomain: 'https://denverpioneers.com/',
-        statsUrl: 'https://denverpioneers.com/' + statsUrlPath ,
-        rosterUrl: rosterUrlPath.replace('TEAM_NAME', 'denver'),
-        cssSelector: statsCssSelector,
-    };
-
-    const hopkins = {
-        name: 'hopkins',
-        rootDomain: 'https://hopkinssports.com/',
-        statsUrl: 'https://hopkinssports.com/' + statsUrlPath ,
-        rosterUrl: rosterUrlPath.replace('TEAM_NAME', 'johns-hopkins'),
-        cssSelector: statsCssSelector,
-    };
-
-    const cornell = {
-        name: 'cornell',
-        rootDomain: 'https://cornellbigred.com/',
-        statsUrl: 'https://cornellbigred.com/' + statsUrlPath ,
-        rosterUrl: rosterUrlPath.replace('TEAM_NAME', 'cornell'),
-        cssSelector: statsCssSelector,
-    };
-
-    const loyola = {
-        name: 'loyola',
-        rootDomain: 'https://loyolagreyhounds.com/',
-        statsUrl: 'https://loyolagreyhounds.com/' + statsUrlPath ,
-        rosterUrl: rosterUrlPath.replace('TEAM_NAME', 'loyola'),
-        cssSelector: statsCssSelector,
-    };
-
-    const army = {
-        name: 'army',
-        rootDomain: 'https://goarmywestpoint.com/',
-        statsUrl: 'https://goarmywestpoint.com/' + statsUrlPath ,
-        rosterUrl: rosterUrlPath.replace('TEAM_NAME', 'army'),
-        cssSelector: statsCssSelector,
-    };
-
-    const lehigh = {
-        name: 'lehigh',
-        rootDomain: 'https://lehighsports.com/',
-        statsUrl: 'https://lehighsports.com/' + statsUrlPath ,
-        rosterUrl: rosterUrlPath.replace('TEAM_NAME', 'lehigh'),
-        cssSelector: statsCssSelector,
-    };
-
-
-    //const teams = [psu];
-    const teams = [psu, yale, uva, uPenn, loyola, hopkins, cornell, denver, duke, syracuse, maryland, army, lehigh];
-    //const teams = [uPenn];
-    const year = 2019;
-    //const year = 2020;
-    const classYr = 'sr';
+    const teamsConfig = [
+        'north-carolina',
+        'penn-state',
+        // 'yale', // => not working, they don't have 2021 stats posted
+        // 'virginia', // => not working, => their stats url is messed up
+        'maryland',
+        'pennsylvania',
+        'duke',
+        'denver',
+        'johns-hopkins',
+        'cornell',
+        'loyola',
+        'army',
+        'lehigh',
+        'syracuse'
+    ];
 
     let classData = {
         year: year,
         classStats: classYr,
-        psu: {}, yale: "", uva: "", uPenn: "", loyola: "", hopkins: "", cornell: "", denver: "", duke: "", syracuse: "", maryland: ""
+        description: `For the ${year} season, the ${classYr} accounted for the following output. This is theoretically what a team is losing if it's the SR class. Need to check covid eligibility. `
     };
 
-    await teams.forEach( async team => {
-        console.log('starting ', team.name);
-        //urls
-        const
-            statsUrl       = team.statsUrl.replace('2020', year),
-            goalieStatsUrl = team.rootDomain + goalieStatsUrlPath.replace('2020', year),
-            rosterUrl      = team.rosterUrl.replace('2020', year);
+    await teamsConfig.forEach( async teamName => {
+        console.log('starting ', teamName);
+        const team = createTeamConfig(year, teamName);
 
         //get data
+        const teamStatsBody = await getHtml(team.statsUrl);
+        // console.log('teamStatsBody = ', teamStatsBody)
+
         const
-            teamStatsBody    = await getHtml(statsUrl),
-            rosterHtml       = await getHtml(rosterUrl),
-            teamStatsTable   = xrayer(await teamStatsBody, team.cssSelector),
-            goalieStatsTable = xrayer(await rosterHtml, goalieCssSelector),
-            teamRosterTable  = xrayer(await rosterHtml, rosterCssSelector);
+            rosterHtml       = await getHtml(team.rosterUrl),
+            teamStatsTable   = await xrayer(await teamStatsBody, team.cssSelector),
+            goalieStatsTable = xrayer(await rosterHtml, team.goalieCssSelector),
+            teamRosterTable  = xrayer(await rosterHtml, team.rosterCssSelector);
 
         const rankAndRecord = await getRecordAndRankFromRosterHtml(rosterHtml);
+        rankAndRecord[`${year}-rank`] = rankAndRecord.rank;
+        rankAndRecord[`${year}-record`] = rankAndRecord.record;
+        delete rankAndRecord['rank']
+        delete rankAndRecord['record']
+
+        const thisYear = year+1
+        const thisYearRosterUrl = team.rosterUrl.replace(year, thisYear);
+        console.log('thisYearRosterUrl =', thisYearRosterUrl)
+        const thisYearRosterHtml = await getHtml(thisYearRosterUrl);
+        const thisYearRankAndRecord = await getRecordAndRankFromRosterHtml(thisYearRosterHtml);
+        rankAndRecord[`${thisYear}-rank`] = thisYearRankAndRecord.rank;
+        rankAndRecord[`${thisYear}-record`] = thisYearRankAndRecord.record;
+
+        if (!teamStatsTable) throw Error('no teamStatsTable');
 
         //format data
         const
@@ -413,21 +412,22 @@ async function getTeamStats() {
         //reduce data
         const reducedTeamStats = reduceTeamStats(aggregateTeamData, formattedTeamStats);
 
-        const classSpecific = splitOutByClass(classYr, reducedTeamStats, await rankAndRecord);
-        console.log('classSpecific = ', classSpecific);
+        const classSpecific = splitOutByClass(classYr, reducedTeamStats, rankAndRecord);
+        // console.log('classSpecific = ', classSpecific);
+        classData[team.name] = {};
         classData[team.name] = classSpecific;
-        writeToJson('data/multipleTeamStatsBy'+classYr+'Class'+year+'.json', await classData);
+        writeToJson(`data/multiple-team-stats/${year}/${classYr}Class.json`, await classData);
 
         reducedTeamStats.year = year;
 
-        writeToJson('data/'+team.name+'TeamStats-'+year+'.json', formattedTeamStats);
-        writeToJson('data/'+team.name+'ReducedStats-'+year+'.json', reducedTeamStats);
-        writeToHtml('htmlRecords/'+team.name+'Stats.html', await teamStatsBody);
-        writeToHtml('htmlRecords/'+team.name+'Roster.html', await rosterHtml);
+        writeToJson('data/stats/'+team.name+'TeamStats-'+year+'.json', formattedTeamStats);
+        writeToJson('data/stats/'+team.name+'ReducedStats-'+year+'.json', reducedTeamStats);
+        // writeToHtml('htmlRecords/'+team.name+'Stats.html', await teamStatsBody);
+        // writeToHtml('htmlRecords/'+team.name+'Roster.html', await rosterHtml);
         console.log(team.name, ' done!');
     })
 
 }
 
-//getTeamStats();
+getTeamStats('sr', 2021);
 

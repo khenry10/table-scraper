@@ -29,7 +29,9 @@ async function getAndFormatRankings(rankingSiteModel) {
     console.log('rankModel allResultsArray', rankModel.allResultsArray);
     console.log('rankModel allResultsObj', rankModel.allResultsObj);
 
-    writeToJson(rankModel.writeToFile, rankModel.allResultsObj);
+    const fileName = `/data/rankings/${rankModel.writeToFile}`;
+    console.log('filename =', fileName)
+    writeToJson(fileName, rankModel.allResultsObj);
     return rankFormatted;
 }
 

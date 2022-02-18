@@ -19,7 +19,7 @@ module.exports = class insideLacrosseModel extends rankingModel {
         this.points       = points;
         this.lastWeekRank = parseInt(lastWeekRank) || "-";
         this.url          = `${url}${divisionMap[this.division]}/polls`;
-        this.writeToFile  = 'mocks/insideLacrosseRank-week9.json';
+        this.writeToFile  = 'insideLacrosseRank-week1.json';
         this.source       = 'IL';
     }
 

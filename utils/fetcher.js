@@ -26,7 +26,7 @@ const fetcher = async function( url, httpVerb, payload ){
         fetchOptions[httpVerb]['body'] = stringIt( payload );
     }
 
-    console.log( url," fetchOptions = ", fetchOptions[httpVerb], " and payload = ", payload );
+    console.log( url," fetchOptions = ", fetchOptions[httpVerb]);
     //console.trace("API call")
 
     return fetch( url, fetchOptions[httpVerb] )

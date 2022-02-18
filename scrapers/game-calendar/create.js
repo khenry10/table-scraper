@@ -184,7 +184,7 @@ async function createGameCalendar( division, week ) {
 function initializeGameCalendars() {
     for( let i = 1; i <= 3; i++) {
         console.log(`starting division ${i}`);
-        createGameCalendar(i, 'week11');
+        createGameCalendar(i, 'week01');
     }
 }
 
