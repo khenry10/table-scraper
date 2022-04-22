@@ -3,6 +3,7 @@ const xray  = require('x-ray')();
 
 function boxScraper(url, htmlParser) {
     console.log('url = ', url);
+    console.log('htmlParser = ', htmlParser);
     return new Promise(function(resolve, reject) {
         //request.get returns the HTML text of the page
         request.get(url, function(err, response, body) {

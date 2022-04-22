@@ -6,14 +6,23 @@ var tabletojson    = require('tabletojson');
 const cheerio      = require('cheerio');
 const  { writeToJson } = require('../../utils/writeToJson');
 
+let count = 0
 function createAndFormatGame(game, winsAndLosses, rankings, gameDate) {
-    console.log('game', game);
-    // console.log('winsAndLosses', winsAndLosses);
-    //console.log('rankings', rankings);
-    console.log('gameDate', gameDate);
+    const debug = game.Home === 'North Carolina'
+    if (debug) {
+        console.log('game input', game);
+        // console.log('winsAndLosses', winsAndLosses);
+        // console.log('rankings', rankings);
+        console.log('gameDate', gameDate);
+    }
+    count++
     const Home = winsAndLosses.find( r => r.Team === game.Home );
     let Away = winsAndLosses.find( r => r.Team === game.Away );
-    console.log('Home', Home);
+
+    if (debug) {
+        console.log('Home =', Home);
+        console.log('Away =', Away);
+    }
 
     let homeRank, awayRank;
 
@@ -21,14 +30,18 @@ function createAndFormatGame(game, winsAndLosses, rankings, gameDate) {
         Away = {}
     }
 
-    rankings.forEach( r => {
-        //console.log('r = ', r)
-        if ( Home && Home.team && r.SCHOOL == Home.Team ){
+    rankings.forEach( (r, i) => {
+        if ( Home && Home.Team && r.SCHOOL == Home.Team ){
             homeRank = r;
         } else if ( r.SCHOOL == Away.Team ){
             awayRank = r;
         }
     });
+
+    if (debug) {
+        console.log('homeRank =', homeRank)
+        console.log('awayRank =', awayRank)
+    }
 
     const homeTeamRank = homeRank ? "#" + homeRank.Rank + " " : "";
     const awayTeamRank = awayRank ? "#" + awayRank.Rank + " " : "";
@@ -40,6 +53,9 @@ function createAndFormatGame(game, winsAndLosses, rankings, gameDate) {
     game.Home =  homeTeamRank + game.Home + " ("+ h['W']  +"-"+ h['L']  +")";
     game.Away =  awayTeamRank + game.Away + " ("+ a['W']  +"-"+ a['L']  +")";
     game.timestamp = new Date();
+    if (debug) {
+        console.log('game =', game)
+    }
     return game
 }
 
@@ -60,6 +76,8 @@ function schedulerMapper(table, index, winsAndLosses, ranking, gameDate ) {
     // return scheduleOfGames.map( (game) => {
     //     return createAndFormatGame(game, winsAndLosses, ranking, gameDate);
     // });
+
+    console.log('scheduleOfGames =', scheduleOfGames)
 
     return combineAndProcess(scheduleOfGames, winsAndLosses, ranking, gameDate);
 }
@@ -102,6 +120,8 @@ function createArrOfDate (body) {
             const str = $("h4").text();
             let str2  = "";
 
+            console.log('str =', str)
+
             for ( let i = 0; i < str.length; i++ ) {
 
                 if ( !parseInt( str[i] ) ) {
@@ -119,6 +139,7 @@ function createArrOfDate (body) {
                 }
             }
             const dateArr = str2.split(";");
+            console.log('dateArr =', dateArr)
             return  resolve( dateArr );
         })
     })
@@ -151,9 +172,10 @@ async function createGameCalendar( division, week ) {
         [winsAndLosses]   = await tableScraper.get(buildUrl(division, 'teams')),
         rankingData       = await tableScraper.get(buildUrl(division, 'polls')),
         htmlGamesSchedule = await boxScraper(buildUrl(division, 'calendar'));
+        console.log('htmlGamesSchedule =', htmlGamesSchedule)
 
     // console.log('rankingData ', rankingData);
-    console.log('rankingData ', rankingData[0].length);
+    // console.log('rankingData ', rankingData[0].length);
 
     //cleans & processes data
     const
@@ -165,8 +187,8 @@ async function createGameCalendar( division, week ) {
             // //conversion creates duplicate of the first table of dates
             // if ( i === 0 ) return '';
             //
-             console.log('winsAndLosses = ',winsAndLosses);
-             console.log('ranking = ',ranking);
+            //  console.log('winsAndLosses = ',winsAndLosses);
+             // console.log('ranking = ',ranking);
             // return scheduleOfGames.map( (game) => {
             //     return createAndFormatGame(game, winsAndLosses, ranking, gameDates[i-1]);
             // });
@@ -178,14 +200,28 @@ async function createGameCalendar( division, week ) {
     const year            = new Date().getFullYear();
     const divisionDisplay = ncaaDivisionUrls[division].toUpperCase();
     const file            = `data/game-calendar/${year}/${divisionDisplay}-${week}-calendar.json`;
-    writeToJson(file, data);
+    console.log('file =', file)
+    // writeToJson(file, data);
+
+    console.log('data = ', data)
+
+    // const fs           = require('fs');
+    // fs.writeFile(file, JSON.stringify( data, null, 2 ), function (err) {
+    //     if (err) throw err;
+    //     console.log( filename,'Saved!')
+    // });
 }
 
 function initializeGameCalendars() {
-    for( let i = 1; i <= 3; i++) {
-        console.log(`starting division ${i}`);
-        createGameCalendar(i, 'week01');
-    }
+    const [, , division, week] = process.argv;
+    console.log(' process.argv =',  process.argv);
+    console.log('division =', division);
+    console.log('week =', week);
+    createGameCalendar(division, `week${week}`);
+    // for( let i = 3; i <= 3; i++) {
+    //     console.log(`starting division ${i}`);
+    //     createGameCalendar(i, 'week05');
+    // }
 }
 
 initializeGameCalendars();
