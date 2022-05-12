@@ -1,7 +1,7 @@
 var request = require('request');
 const xray  = require('x-ray')();
 
-function boxScraper(url, htmlParser) {
+function boxScraper(url, htmlParser, htmlSelector = ['.box@html']) {
     console.log('url = ', url);
     console.log('htmlParser = ', htmlParser);
     return new Promise(function(resolve, reject) {
@@ -16,11 +16,13 @@ function boxScraper(url, htmlParser) {
                 return reject(new Error('The website requested returned an error!'));
             }
             // console.log('body ', body)
-            xray(body, ['.box@html'])(function (conversionError, tableHtmlList) {
+            xray(body, htmlSelector)(function (conversionError, tableHtmlList) {
                 if (conversionError) {
                     console.log("conversionError = ", conversionError);
                     return reject(conversionError);
                 }
+
+                // console.log('tableHtmlList =', tableHtmlList)
 
                 if(htmlParser) {
                     return resolve(htmlParser(body))

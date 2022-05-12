@@ -5,10 +5,102 @@ var request        = require('request');
 var tabletojson    = require('tabletojson');
 const cheerio      = require('cheerio');
 const  { writeToJson } = require('../../utils/writeToJson');
+const { getLaxNumbersDictionary } = require('./laxNumbers');
+
+const debug = false;
+
+const thisWeeksGames = [
+    'Notre Dame',
+    'North Carolina',
+    // 'Robert Morris',
+    // 'Air Force',
+    'Army',
+    // 'Navy',
+    // 'Cornell',
+    // 'Brown',
+    // 'High Point',
+    // 'Richmond',
+    // 'Hobart',
+    // 'LIU',
+    // 'Lehigh',
+    // 'Boston University',
+    // 'Drexel',
+    // 'Delaware',
+    // 'Fairfield',
+    // 'Towson',
+    // 'Hofstra',
+    'UMass',
+    // 'Middlebury',
+    // 'Amherst',
+    // 'UIndy',
+    // 'Mercyhurst',
+    // 'Loyola',
+    // 'Bucknell',
+    // 'Princeton',
+    // 'Stony Brook',
+    // 'Johns Hopkins',
+    // 'Vermont',
+    // 'Penn State',
+    // 'Yale',
+    // 'Harvard',
+    'Duke',
+    'Syracuse',
+    'St Lawrence',
+    'RIT'
+];
+
+const getLaxNumbersTeamData = (team) => {
+    let teamName;
+    switch (team) {
+        case 'UMass':
+            teamName = 'Massachusetts';
+            break;
+        case 'Boston U':
+            teamName = "Boston University";
+            break;
+        default:
+            teamName = team;
+    }
+
+    return teamName
+};
+
+const shapeLaxNumberStats = (teamName, teamData) => {
+    const teamStat = {};
+    teamStat[`${teamName}_Lax_Numbers_Rank`] = teamData.ranking;
+    teamStat[`${teamName}_Lax_Numbers_Rating`] = teamData.rating;
+
+    // const max = Math.max(homeTeamLaxNumbers.rating, awayTeamLaxNumbers.rating);
+    // const min = Math.min(homeTeamLaxNumbers.rating, awayTeamLaxNumbers.rating);
+    //
+    // game['lax_numbers_rating_diff'] = max - min;
+
+    return teamStat;
+}
 
 let count = 0
-function createAndFormatGame(game, winsAndLosses, rankings, gameDate) {
-    const debug = game.Home === 'North Carolina'
+
+/**
+ *
+ * @param game {obj} - upcoming game to be played
+ * {
+ *   '4': 'PreviewFan Picks',
+ *   Home: 'NJIT',
+ *   Away: 'UAlbany',
+ *   Time: '6:00 pm',
+ *   Watch: 'Webstream'
+ * }
+ *
+ * @param winsAndLosses
+ * @param rankings
+ * @param gameDate
+ * @param laxNumbersDictionary {obj} - { Maryland: { wins: 11, rating: 1, sched: 92.53, ... }}
+ * @returns {*}
+ */
+function createAndFormatGame(game, winsAndLosses, rankings, gameDate, laxNumbersDictionary) {
+    const debug = true;
+    // const debug = game.Home === 'North Carolina';
+    // const debug = count === 1;
     if (debug) {
         console.log('game input', game);
         // console.log('winsAndLosses', winsAndLosses);
@@ -30,6 +122,8 @@ function createAndFormatGame(game, winsAndLosses, rankings, gameDate) {
         Away = {}
     }
 
+    // if(!thisWeeksGames.includes(Away.Team) || !thisWeeksGames.includes(Home.Team)) return
+
     rankings.forEach( (r, i) => {
         if ( Home && Home.Team && r.SCHOOL == Home.Team ){
             homeRank = r;
@@ -39,8 +133,8 @@ function createAndFormatGame(game, winsAndLosses, rankings, gameDate) {
     });
 
     if (debug) {
-        console.log('homeRank =', homeRank)
-        console.log('awayRank =', awayRank)
+        console.log('homeRank =', homeRank);
+        console.log('awayRank =', awayRank);
     }
 
     const homeTeamRank = homeRank ? "#" + homeRank.Rank + " " : "";
@@ -56,16 +150,38 @@ function createAndFormatGame(game, winsAndLosses, rankings, gameDate) {
     if (debug) {
         console.log('game =', game)
     }
-    return game
+
+    const homeTeamLaxNumbers = laxNumbersDictionary[getLaxNumbersTeamData(Home.Team)];
+    const awayTeamLaxNumbers = laxNumbersDictionary[getLaxNumbersTeamData(Away.Team)];
+    let shapedHomeLaxStats;
+    let shapedAwayLaxStats;
+
+    if (homeTeamLaxNumbers) {
+        shapedHomeLaxStats = shapeLaxNumberStats(Home.Team, homeTeamLaxNumbers);
+    }
+
+    if (awayTeamLaxNumbers) {
+        shapedAwayLaxStats =shapeLaxNumberStats(Away.Team, awayTeamLaxNumbers);
+    }
+
+    if (homeTeamLaxNumbers && awayTeamLaxNumbers) {
+
+        const max = Math.max(homeTeamLaxNumbers.rating, awayTeamLaxNumbers.rating);
+        const min = Math.min(homeTeamLaxNumbers.rating, awayTeamLaxNumbers.rating);
+
+        game['lax_numbers_rating_diff'] = max - min;
+    }
+
+    return Object.assign(game, shapedHomeLaxStats, shapedAwayLaxStats)
 }
 
-function combineAndProcess(scheduleOfGames, winsAndLosses, ranking, gameDate ) {
+function combineAndProcess(scheduleOfGames, winsAndLosses, ranking, gameDate, laxNumbersDictionary) {
     return scheduleOfGames.map( (game) => {
-        return createAndFormatGame(game, winsAndLosses, ranking, gameDate);
+        return createAndFormatGame(game, winsAndLosses, ranking, gameDate, laxNumbersDictionary);
     });
 }
 
-function schedulerMapper(table, index, winsAndLosses, ranking, gameDate ) {
+function schedulerMapper(table, index, winsAndLosses, ranking, gameDate,laxNumbersDictionary) {
     const scheduleOfGames = tabletojson.convert('<table>' + table + '</table>')[0];
 
     //conversion creates duplicate of the first table of dates
@@ -77,9 +193,9 @@ function schedulerMapper(table, index, winsAndLosses, ranking, gameDate ) {
     //     return createAndFormatGame(game, winsAndLosses, ranking, gameDate);
     // });
 
-    console.log('scheduleOfGames =', scheduleOfGames)
+    if (debug) console.log('scheduleOfGames =', scheduleOfGames);
 
-    return combineAndProcess(scheduleOfGames, winsAndLosses, ranking, gameDate);
+    return combineAndProcess(scheduleOfGames, winsAndLosses, ranking, gameDate, laxNumbersDictionary);
 }
 
 /**
@@ -167,12 +283,18 @@ async function createGameCalendar( division, week ) {
         3: 'd3'
     };
 
+    // const laxNumbersHtml = await getHtml('https://www.laxnumbers.com/ratings.php?y=2022&v=401');
+    const laxNumbersDictionary = getLaxNumbersDictionary();
+
     //retrieves data
     const
         [winsAndLosses]   = await tableScraper.get(buildUrl(division, 'teams')),
         rankingData       = await tableScraper.get(buildUrl(division, 'polls')),
         htmlGamesSchedule = await boxScraper(buildUrl(division, 'calendar'));
-        console.log('htmlGamesSchedule =', htmlGamesSchedule)
+        // laxNumbersRankings = await tableScraper.get('https://www.laxnumbers.com/ratings.php?y=2022&v=401'); // only gets the header table
+        // laxNumbersRankings = await boxScraper('https://www.laxnumbers.com/ratings.php?y=2022&v=401',null,['table@html']);
+        // console.log('laxNumbersRankings =', laxNumbersRankings)
+        // console.log('laxNumbersRankings =', laxNumbersRankings[1])
 
     // console.log('rankingData ', rankingData);
     // console.log('rankingData ', rankingData[0].length);
@@ -192,7 +314,7 @@ async function createGameCalendar( division, week ) {
             // return scheduleOfGames.map( (game) => {
             //     return createAndFormatGame(game, winsAndLosses, ranking, gameDates[i-1]);
             // });
-            return schedulerMapper(table, i, winsAndLosses, ranking, gameDates[i-1])
+            return schedulerMapper(table, i, winsAndLosses, ranking, gameDates[i-1], laxNumbersDictionary)
         });
 
     const data = [].concat.apply([], await scheduleOfGames);
@@ -200,7 +322,7 @@ async function createGameCalendar( division, week ) {
     const year            = new Date().getFullYear();
     const divisionDisplay = ncaaDivisionUrls[division].toUpperCase();
     const file            = `data/game-calendar/${year}/${divisionDisplay}-${week}-calendar.json`;
-    console.log('file =', file)
+    // console.log('file =', file)
     // writeToJson(file, data);
 
     console.log('data = ', data)
